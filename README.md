@@ -19,7 +19,7 @@ This is a microservice written in Java using Spring Boot. Some Key components of
 '**mvn clean install**' to build the app from the app root folder or use your favourite IDE to trigger a maven clean build.
 '**mvn spring-boot:run**' to run the app or use your IDE to run PrimecalculatorApplication class.
 Navigate to '**http://localhost:8080/v3/api-docs**' to gain access to open-api documentation for all the endpoints.
-Navigate to '**http://localhost:8080/swagger-ui/index.html**' to gain access to swagger ui which will show you all the endpoints. From this UI you can actually try out the endpoints otherwise just use you favourite browser or postman to try each individual **_GET_** endpoints listed below. replace {upToAndIncluding} with number to calculate up to:
+Navigate to '**http://localhost:8080/swagger-ui/index.html**' to gain access to swagger ui which will show you all the endpoints. From this UI you can actually try out the endpoints otherwise just use you favourite browser or postman to try each individual **_GET_** endpoints listed below. **replace** `{upToAndIncluding}` **with number to calculate up to**.
 
 **Seive of Eratosthenes**
 
