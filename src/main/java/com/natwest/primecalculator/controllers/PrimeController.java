@@ -8,7 +8,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 /**
- * RestController for Primes. Entry point for this microservice
+ * RestController for Primes. Entry point for this microservice. Support results only as json.
  */
 @Slf4j
 @RestController
