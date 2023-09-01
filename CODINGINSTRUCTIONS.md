@@ -12,7 +12,7 @@ The REST call would look something like http://your.host.com/primes/10 and shoul
 
 
 
-Requirements
+### Requirements
 
 _The project must be written in Java 8 or above_: **Written in JDK 17**
 
@@ -28,16 +28,12 @@ _The project must be accessible from Github_: **https://github.com/franklini/pri
 
 
 
-Optional Extensions
+### Optional Extensions
 
-Deploy the solution to a chosen platform that we can access.
+_Deploy the solution to a chosen platform that we can access_: **Checkout and use instructions in README.md to run locally**
 
-Consider supporting varying return content types such as XML based, that should be configurable using the requested media type.
+_Consider supporting varying return content types such as XML based, that should be configurable using the requested media type_: **Set to only support Json**
 
-Consider ways to improve overall performance e.g. caching results, concurrent algorithm
+_Consider ways to improve overall performance e.g. caching results, concurrent algorithm_: **Uses Spring Cache with default in memory cache**
 
-Consider supporting multiple algorithms that can be switched based on optional parameters
-
-
-
-Please respond with the coding assignment link to github.
+_Consider supporting multiple algorithms that can be switched based on optional parameters_:**Supports Seive of Eratosthenes, Seive of Sundaram and Seive of Atkin.**
