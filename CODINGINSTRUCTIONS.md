@@ -22,7 +22,7 @@ _The project must have unit and integration tests_: **Unit and Integration Test 
 
 _The project must be runnable in that the service should be hosted in a container e.g. Tomcat, Jetty, Spring Boot etc_: **Using Spring Boot**
 
-_You may use any frameworks or libraries for support e.g. Spring MVC, Apache CXF etc_: **several spring-boot-starter-* plus others, see pom file**
+_You may use any frameworks or libraries for support e.g. Spring MVC, Apache CXF etc_: **several spring-boot-starter-x plus others, see pom file**
 
 _The project must be accessible from Github_: **https://github.com/franklini/primecalculator**
 
