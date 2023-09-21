@@ -7,7 +7,7 @@ This is a microservice written in Java using Spring Boot. Some Key components of
 * **`SpringBoot version 3.1.3`**: the version of **SpringBoot** used for this **microservice**.
 * **`Maven`**: the build system used for this microservice.
 * **`Spring Rest`**: used for the rest endpoints.
-* **`Spring Cache`**: We use the in memory caching option here to store our results per algorithm and per version of algorithm.
+* **`Spring Cache`**: We use the in memory caching option here to store our results.
 * **`Concurrency components`**: ConcurrentHashMap, Parallel Streams, ForkJoin, RecursiveAction, RecursiveTask.
 * **`JUnit4, JUnit5 and SpringBootTest`**: for unit and integration testing.
 * **`Testing Code coverage results`**: Classes: 100%, Methods: 93%, Lines 98%.
@@ -23,12 +23,12 @@ Navigate to '**http://localhost:8080/swagger-ui/index.html**' to gain access to 
 
 **Seive of Eratosthenes**
 
-In my experimentation, Seive of Eratosthenes proved to be the fastest so because of that, I dedicated more time on this algorithm to try to optimise it and came up with extra versions utilising concurrency (ForkJoin and Parallel Streams). See implementation and java documentation in **PrimeUtil.java** for algorithm details and explanation. below are the endpoints.
+In my experimentation, Seive of Eratosthenes proved to be the fastest so because of that, I dedicated more time on this algorithm to try to optimise it and came up with extra versions utilising concurrency (ForkJoin and Parallel Streams). See implementation and java documentation in **SieveOfEratosthenes__.java** for algorithm details and explanation. below are the endpoints.
 * http://localhost:8080/primes/{upToAndIncluding}
-* http://localhost:8080/primes/eratosthenes/{upToAndIncluding}
-* http://localhost:8080/primes/eratosthenes/v2/{upToAndIncluding}
-* http://localhost:8080/primes/eratosthenes/v3/{upToAndIncluding}
-* http://localhost:8080/primes/eratosthenes/v4/{upToAndIncluding} 
+* http://localhost:8080/primes/eratosthenesv1/{upToAndIncluding}
+* http://localhost:8080/primes/eratosthenesv2/{upToAndIncluding}
+* http://localhost:8080/primes/eratosthenesv3/{upToAndIncluding}
+* http://localhost:8080/primes/eratosthenesv4/{upToAndIncluding} 
 
 **Seive of Sundaram**
 

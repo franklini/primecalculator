@@ -32,6 +32,17 @@ class PrimeControllerTest extends TestBase {
     private MockMvc mockMvc;
 
     @Test
+    public void testInvalidArgForGetPrimesSieve() throws Exception {
+        RequestBuilder request = MockMvcRequestBuilders
+                .get("/primes/alan/10")
+                .accept(MediaType.APPLICATION_JSON);
+
+        MvcResult result = mockMvc.perform(request)
+                .andExpect(status().isBadRequest())
+                .andReturn();
+    }
+
+    @Test
     public void testInvalidArgForGetPrimes() throws Exception {
         RequestBuilder request = MockMvcRequestBuilders
                 .get("/primes/invalid")
@@ -61,7 +72,7 @@ class PrimeControllerTest extends TestBase {
     @Test
     public void testInvalidArgForGetPrimesWithEratosthenes() throws Exception {
         RequestBuilder request = MockMvcRequestBuilders
-                .get("/primes/eratosthenes/invalid")
+                .get("/primes/eratosthenesv1/invalid")
                 .accept(MediaType.APPLICATION_JSON);
 
         MvcResult result = mockMvc.perform(request)
@@ -75,7 +86,7 @@ class PrimeControllerTest extends TestBase {
         String primeRangeJson = mapper.writeValueAsString(primeRange);
 
         RequestBuilder request = MockMvcRequestBuilders
-                .get("/primes/eratosthenes/"+primeRange.initial())
+                .get("/primes/eratosthenesv1/"+primeRange.initial())
                 .accept(MediaType.APPLICATION_JSON);
 
         MvcResult result = mockMvc.perform(request)
@@ -87,7 +98,7 @@ class PrimeControllerTest extends TestBase {
     @Test
     public void testInvalidArgForGetPrimesWithEratosthenesV2() throws Exception {
         RequestBuilder request = MockMvcRequestBuilders
-                .get("/primes/eratosthenes/v2/invalid")
+                .get("/primes/eratosthenesv2/nvalid")
                 .accept(MediaType.APPLICATION_JSON);
 
         MvcResult result = mockMvc.perform(request)
@@ -101,7 +112,7 @@ class PrimeControllerTest extends TestBase {
         String primeRangeJson = mapper.writeValueAsString(primeRange);
 
         RequestBuilder request = MockMvcRequestBuilders
-                .get("/primes/eratosthenes/v2/"+primeRange.initial())
+                .get("/primes/eratosthenesv2/"+primeRange.initial())
                 .accept(MediaType.APPLICATION_JSON);
 
         MvcResult result = mockMvc.perform(request)
@@ -113,7 +124,7 @@ class PrimeControllerTest extends TestBase {
     @Test
     public void testInvalidArgForGetPrimesWithEratosthenesV3() throws Exception {
         RequestBuilder request = MockMvcRequestBuilders
-                .get("/primes/eratosthenes/v3/invalid")
+                .get("/primes/eratosthenesv3/invalid")
                 .accept(MediaType.APPLICATION_JSON);
 
         MvcResult result = mockMvc.perform(request)
@@ -127,7 +138,7 @@ class PrimeControllerTest extends TestBase {
         String primeRangeJson = mapper.writeValueAsString(primeRange);
 
         RequestBuilder request = MockMvcRequestBuilders
-                .get("/primes/eratosthenes/v3/"+primeRange.initial())
+                .get("/primes/eratosthenesv3/"+primeRange.initial())
                 .accept(MediaType.APPLICATION_JSON);
 
         MvcResult result = mockMvc.perform(request)
@@ -139,7 +150,7 @@ class PrimeControllerTest extends TestBase {
     @Test
     public void testInvalidArgForGetPrimesWithEratosthenesV4() throws Exception {
         RequestBuilder request = MockMvcRequestBuilders
-                .get("/primes/eratosthenes/v4/invalid")
+                .get("/primes/eratosthenesv4/invalid")
                 .accept(MediaType.APPLICATION_JSON);
 
         MvcResult result = mockMvc.perform(request)
@@ -153,7 +164,7 @@ class PrimeControllerTest extends TestBase {
         String primeRangeJson = mapper.writeValueAsString(primeRange);
 
         RequestBuilder request = MockMvcRequestBuilders
-                .get("/primes/eratosthenes/v4/"+primeRange.initial())
+                .get("/primes/eratosthenesv4/"+primeRange.initial())
                 .accept(MediaType.APPLICATION_JSON);
 
         MvcResult result = mockMvc.perform(request)
