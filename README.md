@@ -42,9 +42,9 @@ Seive of Atkin proved to be the third fastest algorithm after all my optimisatio
 
 Reference links and sources of information:
 
-https://www.geeksforgeeks.org/sieve-of-eratosthenes/
-https://www.geeksforgeeks.org/sieve-sundaram-print-primes-smaller-n/
-https://luckytoilet.wordpress.com/2010/04/18/the-sieve-of-sundaram/
-https://rosettacode.org/wiki/The_sieve_of_Sundaram
-https://www.geeksforgeeks.org/sieve-of-atkin/
-https://medium.com/smucs/sieve-of-atkin-the-theoretical-optimization-of-prime-number-generation-e47107d61e28
+* https://www.geeksforgeeks.org/sieve-of-eratosthenes/
+* https://www.geeksforgeeks.org/sieve-sundaram-print-primes-smaller-n/
+* https://luckytoilet.wordpress.com/2010/04/18/the-sieve-of-sundaram/
+* https://rosettacode.org/wiki/The_sieve_of_Sundaram
+* https://www.geeksforgeeks.org/sieve-of-atkin/
+* https://medium.com/smucs/sieve-of-atkin-the-theoretical-optimization-of-prime-number-generation-e47107d61e28
