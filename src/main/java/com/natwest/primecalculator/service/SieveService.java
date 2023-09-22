@@ -3,8 +3,6 @@ package com.natwest.primecalculator.service;
 import com.natwest.primecalculator.entities.PrimeRange;
 import com.natwest.primecalculator.enums.SieveEnum;
 
-import java.util.List;
-
 public interface SieveService {
 
     /**

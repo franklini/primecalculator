@@ -6,7 +6,6 @@ import com.natwest.primecalculator.service.PrimeService;
 import com.natwest.primecalculator.service.SieveService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
 
