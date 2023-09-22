@@ -10,6 +10,7 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.ForkJoinPool;
@@ -53,6 +54,10 @@ public class SieveOfEratosthenesV2ServiceImpl implements SieveOfEratosthenesServ
         StopWatch watch = new StopWatch();
         watch.start();
         log.info("Starting ConcurrentPrimeUtil.getPrimeRangeUsingSieveOfEratosthenesV2(..) for {}", limit);
+
+        //value less than 2 always returns empty list of primes
+        if(limit < 2)
+            return new PrimeRange(limit, List.of());
 
         //create array of booleans "isPrimeArray[0..limit]" with all entries set to true.
         // isPrimeArray[i] will eventually be set to false if its not a prime

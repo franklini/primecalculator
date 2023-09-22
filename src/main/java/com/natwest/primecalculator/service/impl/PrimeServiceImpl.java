@@ -28,10 +28,15 @@ public class PrimeServiceImpl implements PrimeService {
     }
 
 
+    /**
+     * Get the right SieveService implementation from enum to service map and call the getPrimeRange interface method
+     * @param sieve
+     * @param upToAndIncluding
+     * @return PrimeRange
+     */
     @Override
     public PrimeRange getPrimes(SieveEnum sieve, Integer upToAndIncluding) {
 
-        //return sieve.getSieveInterface().getPrimeRange(upToAndIncluding);
         return beansMappedBySieveEnum.get(sieve).getPrimeRange(upToAndIncluding);
     }
 

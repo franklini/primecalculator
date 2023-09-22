@@ -62,6 +62,10 @@ public class SieveOfSundaramServiceImpl implements SieveService {
         watch.start();
         log.info("Starting getPrimeRangeUsingSieveOfSundaram for {}", limit);
 
+        //value less than 2 always returns empty list of primes
+        if(limit < 2)
+            return new PrimeRange(limit, List.of());
+
         // nNew = Floor of (limit-1)/2
         int nNew = (limit - 1) / 2;
 

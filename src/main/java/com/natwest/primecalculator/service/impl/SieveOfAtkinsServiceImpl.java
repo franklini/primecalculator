@@ -19,6 +19,7 @@ import java.util.List;
 @Slf4j
 public class SieveOfAtkinsServiceImpl implements SieveService {
 
+
     @Override
     public SieveEnum getSieveEnum() {
         return SieveEnum.ATKIN;
@@ -94,6 +95,10 @@ public class SieveOfAtkinsServiceImpl implements SieveService {
         StopWatch watch = new StopWatch();
         watch.start();
         log.info("Starting getPrimeRangeUsingSieveOfAtkin for {}", limit);
+
+        //value less than 2 always returns empty list of primes
+        if(limit < 2)
+            return new PrimeRange(limit, List.of());
 
         //Array that will store found primes
         List<Integer> primes = new ArrayList<>();

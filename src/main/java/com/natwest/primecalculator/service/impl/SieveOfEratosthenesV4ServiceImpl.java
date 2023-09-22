@@ -50,6 +50,10 @@ public class SieveOfEratosthenesV4ServiceImpl implements SieveOfEratosthenesServ
         watch.start();
         log.info("Starting getPrimeRangeUsingSieveOfEratosthenesV4(..) for {}", limit);
 
+        //value less than 2 always returns empty list of primes
+        if(limit < 2)
+            return new PrimeRange(limit, List.of());
+
         //create array of booleans "primeArray[0..limit]" with all entries set to the array index except
         // primeArray[0] and primeArray[1], if they exist, which is set to -1.
 
