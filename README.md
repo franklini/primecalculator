@@ -7,7 +7,7 @@ This is a microservice written in Java using Spring Boot. Some Key components of
 * **`SpringBoot version 3.1.3`**: the version of **SpringBoot** used for this **microservice**.
 * **`Maven`**: the build system used for this microservice.
 * **`Spring Rest`**: used for the rest endpoints.
-* **`Spring Cache`**: We use the in memory caching option here to store our results.
+* **`Spring Cache`**: We use the in memory caching option here to store our results per algorithm and per version of algorithm.
 * **`Concurrency components`**: ConcurrentHashMap, Parallel Streams, ForkJoin, RecursiveAction, RecursiveTask.
 * **`JUnit4, JUnit5 and SpringBootTest`**: for unit and integration testing.
 * **`Testing Code coverage results`**: Classes: 100%, Methods: 93%, Lines 98%.

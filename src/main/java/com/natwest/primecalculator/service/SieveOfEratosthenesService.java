@@ -1,9 +1,9 @@
-package com.natwest.primecalculator.utils;
+package com.natwest.primecalculator.service;
 
 import java.util.Arrays;
 
 
-public interface SieveOfEratosthenesInterface extends SieveInterface{
+public interface SieveOfEratosthenesService extends SieveService {
 
     /**
      * Helper method to reduce code duplication for my various versions of sieve of eratosthenes.

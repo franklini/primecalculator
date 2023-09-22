@@ -1,31 +1,31 @@
 package com.natwest.primecalculator.enums;
 
-import com.natwest.primecalculator.utils.SieveInterface;
-import com.natwest.primecalculator.utils.impl.SieveOfEratosthenesV1;
-import com.natwest.primecalculator.utils.impl.SieveOfEratosthenesV2;
-import com.natwest.primecalculator.utils.impl.SieveOfEratosthenesV3;
-import com.natwest.primecalculator.utils.impl.SieveOfEratosthenesV4;
-import com.natwest.primecalculator.utils.impl.SieveOfAtkins;
-import com.natwest.primecalculator.utils.impl.SieveOfSundaram;
+import com.natwest.primecalculator.service.SieveService;
+import com.natwest.primecalculator.service.impl.SieveOfEratosthenesV1ServiceImpl;
+import com.natwest.primecalculator.service.impl.SieveOfEratosthenesV2ServiceImpl;
+import com.natwest.primecalculator.service.impl.SieveOfEratosthenesV3ServiceImpl;
+import com.natwest.primecalculator.service.impl.SieveOfEratosthenesV4ServiceImpl;
+import com.natwest.primecalculator.service.impl.SieveOfAtkinsServiceImpl;
+import com.natwest.primecalculator.service.impl.SieveOfSundaramServiceImpl;
 
 /**
  * Enum for managing the rest endpoints for the different sieves.
  */
 public enum SieveEnum {
-    ERATOSTHENESV1(new SieveOfEratosthenesV1()),
-    ERATOSTHENESV2(new SieveOfEratosthenesV2()),
-    ERATOSTHENESV3(new SieveOfEratosthenesV3()),
-    ERATOSTHENESV4(new SieveOfEratosthenesV4()),
-    ATKIN(new SieveOfAtkins()),
-    SUNDARAM(new SieveOfSundaram());
+    ERATOSTHENESV1(new SieveOfEratosthenesV1ServiceImpl()),
+    ERATOSTHENESV2(new SieveOfEratosthenesV2ServiceImpl()),
+    ERATOSTHENESV3(new SieveOfEratosthenesV3ServiceImpl()),
+    ERATOSTHENESV4(new SieveOfEratosthenesV4ServiceImpl()),
+    ATKIN(new SieveOfAtkinsServiceImpl()),
+    SUNDARAM(new SieveOfSundaramServiceImpl());
 
-    private SieveInterface sieveInterface;
+    private SieveService sieveService;
 
-    SieveEnum(final SieveInterface sieveInterface){
-        this.sieveInterface = sieveInterface;
+    SieveEnum(final SieveService sieveService){
+        this.sieveService = sieveService;
     }
 
-    public SieveInterface getSieveInterface() {
-        return sieveInterface;
+    public SieveService getSieveInterface() {
+        return sieveService;
     }
 }

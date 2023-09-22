@@ -1,9 +1,12 @@
-package com.natwest.primecalculator.utils.impl;
+package com.natwest.primecalculator.service.impl;
 
 import com.natwest.primecalculator.entities.PrimeRange;
-import com.natwest.primecalculator.utils.SieveOfEratosthenesInterface;
+import com.natwest.primecalculator.enums.SieveEnum;
+import com.natwest.primecalculator.service.SieveOfEratosthenesService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.time.StopWatch;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,8 +14,14 @@ import java.util.List;
 /**
  * Sieve implementation class for Sieve Of Eratosthenes Version 1
  */
+@Service
 @Slf4j
-public class SieveOfEratosthenesV1 implements SieveOfEratosthenesInterface {
+public class SieveOfEratosthenesV1ServiceImpl implements SieveOfEratosthenesService {
+
+    @Override
+    public SieveEnum getSieveEnum() {
+        return SieveEnum.ERATOSTHENESV1;
+    }
 
     /**
      * Get Prime Range(Inclusive) Using Sieve Of Eratosthenes.
@@ -37,8 +46,10 @@ public class SieveOfEratosthenesV1 implements SieveOfEratosthenesInterface {
      * @param limit
      * @return PrimeRange
      */
+    @Cacheable("EratosthenesV1")
     @Override
     public PrimeRange getPrimeRange(int limit) {
+        log.info("Sieve Of {}: Working out primes for {} for the 1st time", getSieveEnum(), limit);
         //use stopwatch to monitor duration
         StopWatch watch = new StopWatch();
         watch.start();
@@ -59,4 +70,6 @@ public class SieveOfEratosthenesV1 implements SieveOfEratosthenesInterface {
 
         return new PrimeRange(limit, primes);
     }
+
+
 }

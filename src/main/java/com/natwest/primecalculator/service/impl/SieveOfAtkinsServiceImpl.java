@@ -1,9 +1,12 @@
-package com.natwest.primecalculator.utils.impl;
+package com.natwest.primecalculator.service.impl;
 
 import com.natwest.primecalculator.entities.PrimeRange;
-import com.natwest.primecalculator.utils.SieveInterface;
+import com.natwest.primecalculator.enums.SieveEnum;
+import com.natwest.primecalculator.service.SieveService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.time.StopWatch;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -12,8 +15,14 @@ import java.util.List;
 /**
  * Sieve implementation class for Sieve Of Atkin
  */
+@Service
 @Slf4j
-public class SieveOfAtkins implements SieveInterface {
+public class SieveOfAtkinsServiceImpl implements SieveService {
+
+    @Override
+    public SieveEnum getSieveEnum() {
+        return SieveEnum.ATKIN;
+    }
 
     /**
      * Get Prime Range(Inclusive) Using Sieve Of Atkin
@@ -77,8 +86,10 @@ public class SieveOfAtkins implements SieveInterface {
      * @param limit
      * @return PrimeRange
      */
+    @Cacheable("Atkin")
     @Override
     public PrimeRange getPrimeRange(int limit) {
+        log.info("Sieve Of {}: Working out primes for {} for the 1st time", getSieveEnum(), limit);
         //use stopwatch to monitor duration
         StopWatch watch = new StopWatch();
         watch.start();

@@ -17,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * each test, to create multiple test parameters with the provided expected values through the ArgumentsProvider
  * (See TestBase)
  */
-class SieveInterfaceTest extends TestBase {
+class SieveServiceTest extends TestBase {
 
     @ParameterizedTest
     @ArgumentsSource(MyPrimeRangeArgumentsProvider.class)
