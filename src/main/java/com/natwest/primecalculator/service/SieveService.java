@@ -1,7 +1,8 @@
 package com.natwest.primecalculator.service;
 
 import com.natwest.primecalculator.entities.PrimeRange;
-import com.natwest.primecalculator.enums.SieveEnum;
+import com.natwest.primecalculator.entities.SieveKey;
+import com.natwest.primecalculator.enums.SieveAndVersionEnum;
 
 public interface SieveService {
 
@@ -16,6 +17,13 @@ public interface SieveService {
      * get the SieveEnum to be mapped to this service
      * @return
      */
-    SieveEnum getSieveEnum();
+    SieveAndVersionEnum getSieveEnum();
+
+    /**
+     * get the SieveKey to be mapped to this service
+     * @return
+     */
+    SieveKey getSieveKey();
+
 
 }

@@ -1,13 +1,17 @@
 package com.natwest.primecalculator.service.impl;
 
 import com.natwest.primecalculator.entities.PrimeRange;
+import com.natwest.primecalculator.entities.SieveKey;
 import com.natwest.primecalculator.enums.SieveEnum;
+import com.natwest.primecalculator.enums.VersionEnum;
 import com.natwest.primecalculator.service.PrimeService;
 import com.natwest.primecalculator.service.SieveService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.Map;
 
@@ -19,24 +23,22 @@ import java.util.Map;
 @Service
 public class PrimeServiceImpl implements PrimeService {
 
-    private Map<SieveEnum, SieveService> beansMappedBySieveEnum;
+    private Map<SieveKey, SieveService> beansMappedBySieveKey;
 
     @Autowired
-    public PrimeServiceImpl(@NonNull Map<SieveEnum, SieveService> beansMappedBySieveEnum) {
-        this.beansMappedBySieveEnum = beansMappedBySieveEnum;
+    public PrimeServiceImpl(@NonNull Map<SieveKey, SieveService> beansMappedBySieveKey) {
+        this.beansMappedBySieveKey = beansMappedBySieveKey;
     }
 
-
-    /**
-     * Get the right SieveService implementation from enum to service map and call the getPrimeRange interface method
-     * @param sieve
-     * @param upToAndIncluding
-     * @return PrimeRange
-     */
     @Override
-    public PrimeRange getPrimes(SieveEnum sieve, Integer upToAndIncluding) {
+    public PrimeRange getPrimes(SieveEnum sieve, VersionEnum version, Integer upToAndIncluding) {
+        final SieveService sieveService = beansMappedBySieveKey.get(new SieveKey(sieve, version));
 
-        return beansMappedBySieveEnum.get(sieve).getPrimeRange(upToAndIncluding);
+        if(sieveService != null)
+            return sieveService.getPrimeRange(upToAndIncluding);
+        else{
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, String.format("Sieve algorithm %s doesn't have supplied version %s implementation", sieve, version));
+        }
     }
 
 }

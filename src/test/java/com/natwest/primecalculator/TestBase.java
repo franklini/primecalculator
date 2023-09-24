@@ -17,7 +17,7 @@ import java.util.stream.Stream;
  * This will be the base class for all tests.
  */
 public class TestBase {
-    protected static ObjectMapper mapper = new ObjectMapper();
+    protected static ObjectMapper mapper;
 
     protected static PrimeRange primesTo0;
     protected static PrimeRange primesTo1;
@@ -46,6 +46,7 @@ public class TestBase {
 
     @BeforeAll
     static void setup() throws IOException {
+        mapper = new ObjectMapper();
         primesToMinusOne = mapper.readValue(new File("./src/test/resources/primesToMinusOne.json"), PrimeRange.class);
         primesTo0 = mapper.readValue(new File("./src/test/resources/primesTo0.json"), PrimeRange.class);
         primesTo1 = mapper.readValue(new File("./src/test/resources/primesTo1.json"), PrimeRange.class);

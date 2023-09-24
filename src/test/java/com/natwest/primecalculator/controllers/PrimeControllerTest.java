@@ -3,9 +3,11 @@ package com.natwest.primecalculator.controllers;
 import com.natwest.primecalculator.TestBase;
 import com.natwest.primecalculator.entities.PrimeRange;
 import com.natwest.primecalculator.service.PrimeService;
-import org.junit.Test;
+
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ArgumentsSource;
+import org.junit.jupiter.params.provider.ValueSource;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -32,30 +34,19 @@ class PrimeControllerTest extends TestBase {
     private MockMvc mockMvc;
 
     @Test
-    public void testInvalidArgForGetPrimesSieve() throws Exception {
+    void testInvalidArgForGetPrimesSieve() throws Exception {
         RequestBuilder request = MockMvcRequestBuilders
                 .get("/primes/alan/10")
                 .accept(MediaType.APPLICATION_JSON);
 
         MvcResult result = mockMvc.perform(request)
-                .andExpect(status().isBadRequest())
-                .andReturn();
-    }
-
-    @Test
-    public void testInvalidArgForGetPrimes() throws Exception {
-        RequestBuilder request = MockMvcRequestBuilders
-                .get("/primes/invalid")
-                .accept(MediaType.APPLICATION_JSON);
-
-        MvcResult result = mockMvc.perform(request)
-                .andExpect(status().isBadRequest())
+                .andExpect(status().isNotFound())
                 .andReturn();
     }
 
     @ParameterizedTest
     @ArgumentsSource(MyPrimeRangeArgumentsProvider.class)
-    void getPrimes(PrimeRange primeRange) throws Exception {
+    void testGetPrimes(PrimeRange primeRange) throws Exception {
 
         String primeRangeJson = mapper.writeValueAsString(primeRange);
 
@@ -69,24 +60,13 @@ class PrimeControllerTest extends TestBase {
                 .andReturn();
     }
 
-    @Test
-    public void testInvalidArgForGetPrimesWithEratosthenes() throws Exception {
-        RequestBuilder request = MockMvcRequestBuilders
-                .get("/primes/eratosthenesv1/invalid")
-                .accept(MediaType.APPLICATION_JSON);
-
-        MvcResult result = mockMvc.perform(request)
-                .andExpect(status().isBadRequest())
-                .andReturn();
-    }
-
     @ParameterizedTest
     @ArgumentsSource(MyPrimeRangeArgumentsProvider.class)
-    void getPrimesWithEratosthenes(PrimeRange primeRange) throws Exception {
+    void testGetPrimesWithEratosthenes(PrimeRange primeRange) throws Exception {
         String primeRangeJson = mapper.writeValueAsString(primeRange);
 
         RequestBuilder request = MockMvcRequestBuilders
-                .get("/primes/eratosthenesv1/"+primeRange.initial())
+                .get("/primes/eratosthenes/v1/"+primeRange.initial())
                 .accept(MediaType.APPLICATION_JSON);
 
         MvcResult result = mockMvc.perform(request)
@@ -95,24 +75,13 @@ class PrimeControllerTest extends TestBase {
                 .andReturn();
     }
 
-    @Test
-    public void testInvalidArgForGetPrimesWithEratosthenesV2() throws Exception {
-        RequestBuilder request = MockMvcRequestBuilders
-                .get("/primes/eratosthenesv2/nvalid")
-                .accept(MediaType.APPLICATION_JSON);
-
-        MvcResult result = mockMvc.perform(request)
-                .andExpect(status().isBadRequest())
-                .andReturn();
-    }
-
     @ParameterizedTest
     @ArgumentsSource(MyPrimeRangeArgumentsProvider.class)
-    void getPrimesWithEratosthenesV2(PrimeRange primeRange) throws Exception {
+    void testGetPrimesWithEratosthenesV2(PrimeRange primeRange) throws Exception {
         String primeRangeJson = mapper.writeValueAsString(primeRange);
 
         RequestBuilder request = MockMvcRequestBuilders
-                .get("/primes/eratosthenesv2/"+primeRange.initial())
+                .get("/primes/eratosthenes/v2/"+primeRange.initial())
                 .accept(MediaType.APPLICATION_JSON);
 
         MvcResult result = mockMvc.perform(request)
@@ -121,24 +90,13 @@ class PrimeControllerTest extends TestBase {
                 .andReturn();
     }
 
-    @Test
-    public void testInvalidArgForGetPrimesWithEratosthenesV3() throws Exception {
-        RequestBuilder request = MockMvcRequestBuilders
-                .get("/primes/eratosthenesv3/invalid")
-                .accept(MediaType.APPLICATION_JSON);
-
-        MvcResult result = mockMvc.perform(request)
-                .andExpect(status().isBadRequest())
-                .andReturn();
-    }
-
     @ParameterizedTest
     @ArgumentsSource(MyPrimeRangeArgumentsProvider.class)
-    void getPrimesWithEratosthenesV3(PrimeRange primeRange) throws Exception {
+    void testGetPrimesWithEratosthenesV3(PrimeRange primeRange) throws Exception {
         String primeRangeJson = mapper.writeValueAsString(primeRange);
 
         RequestBuilder request = MockMvcRequestBuilders
-                .get("/primes/eratosthenesv3/"+primeRange.initial())
+                .get("/primes/eratosthenes/v3/"+primeRange.initial())
                 .accept(MediaType.APPLICATION_JSON);
 
         MvcResult result = mockMvc.perform(request)
@@ -147,24 +105,13 @@ class PrimeControllerTest extends TestBase {
                 .andReturn();
     }
 
-    @Test
-    public void testInvalidArgForGetPrimesWithEratosthenesV4() throws Exception {
-        RequestBuilder request = MockMvcRequestBuilders
-                .get("/primes/eratosthenesv4/invalid")
-                .accept(MediaType.APPLICATION_JSON);
-
-        MvcResult result = mockMvc.perform(request)
-                .andExpect(status().isBadRequest())
-                .andReturn();
-    }
-
     @ParameterizedTest
     @ArgumentsSource(MyPrimeRangeArgumentsProvider.class)
-    void getPrimesWithEratosthenesV4(PrimeRange primeRange) throws Exception {
+    void testGetPrimesWithEratosthenesV4(PrimeRange primeRange) throws Exception {
         String primeRangeJson = mapper.writeValueAsString(primeRange);
 
         RequestBuilder request = MockMvcRequestBuilders
-                .get("/primes/eratosthenesv4/"+primeRange.initial())
+                .get("/primes/eratosthenes/v4/"+primeRange.initial())
                 .accept(MediaType.APPLICATION_JSON);
 
         MvcResult result = mockMvc.perform(request)
@@ -173,24 +120,13 @@ class PrimeControllerTest extends TestBase {
                 .andReturn();
     }
 
-    @Test
-    public void testInvalidArgForGetPrimesWithSundaram() throws Exception {
-        RequestBuilder request = MockMvcRequestBuilders
-                .get("/primes/sundaram/invalid")
-                .accept(MediaType.APPLICATION_JSON);
-
-        MvcResult result = mockMvc.perform(request)
-                .andExpect(status().isBadRequest())
-                .andReturn();
-    }
-
     @ParameterizedTest
     @ArgumentsSource(MyPrimeRangeArgumentsProvider.class)
-    void getPrimesWithSundaram(PrimeRange primeRange) throws Exception {
+    void testGetPrimesWithSundaram(PrimeRange primeRange) throws Exception {
         String primeRangeJson = mapper.writeValueAsString(primeRange);
 
         RequestBuilder request = MockMvcRequestBuilders
-                .get("/primes/sundaram/"+primeRange.initial())
+                .get("/primes/sundaram/v1/"+primeRange.initial())
                 .accept(MediaType.APPLICATION_JSON);
 
         MvcResult result = mockMvc.perform(request)
@@ -199,24 +135,32 @@ class PrimeControllerTest extends TestBase {
                 .andReturn();
     }
 
-    @Test
-    public void testInvalidArgForGetPrimesWithAtkin() throws Exception {
+    @ParameterizedTest
+    @ValueSource(strings = {"/primes/atkin/v1/invalid",
+            "/primes/sundaram/v1/invalid",
+            "/primes/eratosthenes/v4/invalid",
+            "/primes/eratosthenes/v3/invalid",
+            "/primes/eratosthenes/v2/invalid",
+            "/primes/eratosthenes/v1/invalid",
+            "/primes/invalid"})
+    void testInvalidArgForEndpoints(String urlPath) throws Exception{
         RequestBuilder request = MockMvcRequestBuilders
-                .get("/primes/atkin/invalid")
+                .get(urlPath)
                 .accept(MediaType.APPLICATION_JSON);
 
         MvcResult result = mockMvc.perform(request)
                 .andExpect(status().isBadRequest())
                 .andReturn();
+
     }
 
     @ParameterizedTest
     @ArgumentsSource(MyPrimeRangeArgumentsProvider.class)
-    void getPrimesWithAtkin(PrimeRange primeRange) throws Exception {
+    void testGetPrimesWithAtkin(PrimeRange primeRange) throws Exception {
         String primeRangeJson = mapper.writeValueAsString(primeRange);
 
         RequestBuilder request = MockMvcRequestBuilders
-                .get("/primes/atkin/"+primeRange.initial())
+                .get("/primes/atkin/v1/"+primeRange.initial())
                 .accept(MediaType.APPLICATION_JSON);
 
         MvcResult result = mockMvc.perform(request)

@@ -1,7 +1,9 @@
 package com.natwest.primecalculator.config;
 
 import com.natwest.primecalculator.converters.StringToSieveEnumConverter;
-import com.natwest.primecalculator.enums.SieveEnum;
+import com.natwest.primecalculator.converters.StringToVersionEnumConverter;
+import com.natwest.primecalculator.entities.SieveKey;
+import com.natwest.primecalculator.enums.SieveAndVersionEnum;
 import com.natwest.primecalculator.service.SieveService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -21,19 +23,26 @@ import java.util.stream.Collectors;
 public class AppConfig implements WebMvcConfigurer {
 
     /**
-     * add SieveEnumConverter to the registry
+     * add SieveEnumConverter and VersionEnumConverter to the registry
      * @param registry
      */
     @Override
     public void addFormatters(FormatterRegistry registry) {
         registry.addConverter(new StringToSieveEnumConverter());
+        registry.addConverter(new StringToVersionEnumConverter());
     }
 
 
     @Bean
-    public Map<SieveEnum, SieveService> getBeansMappedByEnum(@NonNull Collection<SieveService> sieveServiceBeans) {
+    public Map<SieveAndVersionEnum, SieveService> getBeansMappedByEnum(@NonNull Collection<SieveService> sieveServiceBeans) {
         return sieveServiceBeans.stream()
                 .collect(Collectors.toMap(SieveService::getSieveEnum, Function.identity()));
+    }
+
+    @Bean
+    public Map<SieveKey, SieveService> getBeansMappedBySeiveKey(@NonNull Collection<SieveService> sieveServiceBeans) {
+        return sieveServiceBeans.stream()
+                .collect(Collectors.toMap(SieveService::getSieveKey, Function.identity()));
     }
 
 

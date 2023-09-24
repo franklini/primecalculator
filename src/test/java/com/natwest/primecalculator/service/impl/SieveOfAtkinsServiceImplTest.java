@@ -2,7 +2,9 @@ package com.natwest.primecalculator.service.impl;
 
 import com.natwest.primecalculator.TestBase;
 import com.natwest.primecalculator.entities.PrimeRange;
+import com.natwest.primecalculator.entities.SieveKey;
 import com.natwest.primecalculator.enums.SieveEnum;
+import com.natwest.primecalculator.enums.VersionEnum;
 import com.natwest.primecalculator.service.SieveService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -22,29 +24,30 @@ import static org.junit.jupiter.api.Assertions.*;
 class SieveOfAtkinsServiceImplTest extends TestBase {
 
     @Autowired
-    private Map<SieveEnum, SieveService> beansMappedBySieveEnum;
+    private Map<SieveKey, SieveService> beansMappedBySieveKey;
+    public static final SieveKey SIEVE_KEY = new SieveKey(SieveEnum.ATKIN, VersionEnum.V1);
 
     @Test
-    void getSieveEnum() {
-        final SieveEnum sieveEnum = beansMappedBySieveEnum.get(SieveEnum.ATKIN).getSieveEnum();
-        assertEquals(SieveEnum.ATKIN, sieveEnum);
+    void testGetSieveEnum() {
+        final SieveKey sieveKey = beansMappedBySieveKey.get(SIEVE_KEY).getSieveKey();
+        assertEquals(SIEVE_KEY, sieveKey);
     }
 
 
     @ParameterizedTest
     @ArgumentsSource(TestBase.MyPrimeRangeArgumentsProvider.class)
-    void getPrimeRange(PrimeRange primeRange) {
-        final PrimeRange result = beansMappedBySieveEnum
-                .get(SieveEnum.ATKIN)
+    void testGetPrimeRange(PrimeRange primeRange) {
+        final PrimeRange result = beansMappedBySieveKey
+                .get(SIEVE_KEY)
                 .getPrimeRange(primeRange.initial());
 
         assertEquals(primeRange, result);
     }
 
     @Test
-    void getPrimesRangeWithNegativeRange() {
-        final PrimeRange result = beansMappedBySieveEnum
-                .get(SieveEnum.ATKIN)
+    void testGetPrimesRangeWithNegativeRange() {
+        final PrimeRange result = beansMappedBySieveKey
+                .get(SIEVE_KEY)
                 .getPrimeRange(-11);
         assertEquals(new PrimeRange(-11, List.of()), result);
     }

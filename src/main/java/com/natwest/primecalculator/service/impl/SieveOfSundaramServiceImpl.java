@@ -1,7 +1,10 @@
 package com.natwest.primecalculator.service.impl;
 
 import com.natwest.primecalculator.entities.PrimeRange;
+import com.natwest.primecalculator.entities.SieveKey;
+import com.natwest.primecalculator.enums.SieveAndVersionEnum;
 import com.natwest.primecalculator.enums.SieveEnum;
+import com.natwest.primecalculator.enums.VersionEnum;
 import com.natwest.primecalculator.service.SieveService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.time.StopWatch;
@@ -19,10 +22,22 @@ import java.util.List;
 @Slf4j
 public class SieveOfSundaramServiceImpl implements SieveService {
 
+    /**
+     * Create static key to be mapped to this service
+     */
+    private static final SieveKey SERVICE_KEY = new SieveKey(SieveEnum.SUNDARAM, VersionEnum.V1);
+
     @Override
-    public SieveEnum getSieveEnum() {
-        return SieveEnum.SUNDARAM;
+    public SieveKey getSieveKey() {
+        return SERVICE_KEY;
     }
+
+    @Override
+    public SieveAndVersionEnum getSieveEnum() {
+        return SieveAndVersionEnum.SUNDARAMV1;
+    }
+
+
 
     /**
      * Get Prime Range(Inclusive) Using Sieve Of Sundaram.
